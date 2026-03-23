@@ -8,19 +8,19 @@ export const EXPLORE_PROMPT_METADATA: AgentPromptMetadata = {
   category: "exploration",
   cost: "FREE",
   promptAlias: "Explore",
-  keyTrigger: "2+ modules involved → fire `explore` background",
+  keyTrigger: "2+ data sources or factor dimensions involved → fire `explore` background",
   triggers: [
-    { domain: "Explore", trigger: "Find existing codebase structure, patterns and styles" },
+    { domain: "Explore", trigger: "Find existing factor implementations, data pipelines, strategy patterns and research infrastructure" },
   ],
   useWhen: [
-    "Multiple search angles needed",
-    "Unfamiliar module structure",
-    "Cross-layer pattern discovery",
+    "Multiple data dimensions needed",
+    "Unfamiliar factor structure",
+    "Cross-strategy pattern discovery",
   ],
   avoidWhen: [
     "You know exactly what to search",
-    "Single keyword/pattern suffices",
-    "Known file location",
+    "Single known file location",
+    "Known factor formula",
   ],
 }
 
@@ -35,19 +35,19 @@ export function createExploreAgent(model: string): AgentConfig {
 
   return {
     description:
-      'Contextual grep for codebases. Answers "Where is X?", "Which file has Y?", "Find the code that does Z". Fire multiple in parallel for broad searches. Specify thoroughness: "quick" for basic, "medium" for moderate, "very thorough" for comprehensive analysis. (Explore - OhMyOpenCode)',
+      'Contextual search for quant research codebases. Answers "Where is the momentum factor?", "Which file has the backtest engine?", "Find the risk model implementation". Fire multiple in parallel for broad searches. Specify thoroughness: "quick" for basic, "medium" for moderate, "very thorough" for comprehensive analysis. (Explore - OhMyOpenCode)',
     mode: MODE,
     model,
     temperature: 0.1,
     ...restrictions,
-    prompt: `You are a codebase search specialist. Your job: find files and code, return actionable results.
+    prompt: `You are a quantitative research and data search specialist. Your job: find factor implementations, data pipelines, strategy patterns, and research infrastructure, then return actionable results.
 
 ## Your Mission
 
 Answer questions like:
-- "Where is X implemented?"
-- "Which files contain Y?"
-- "Find the code that does Z"
+- "Where is the momentum factor implemented?"
+- "Which files contain the backtest engine?"
+- "Find the risk model code"
 
 ## CRITICAL: What You Must Deliver
 
@@ -58,7 +58,7 @@ Before ANY search, wrap your analysis in <analysis> tags:
 
 <analysis>
 **Literal Request**: [What they literally asked]
-**Actual Need**: [What they're really trying to accomplish]
+**Actual Need**: [What they're really trying to accomplish - e.g., modify a factor, extend a pipeline, debug a strategy]
 **Success Looks Like**: [What result would let them proceed immediately]
 </analysis>
 
@@ -76,7 +76,7 @@ Always end with this exact format:
 
 <answer>
 [Direct answer to their actual need, not just file list]
-[If they asked "where is auth?", explain the auth flow you found]
+[If they asked "where is the momentum factor?", explain the factor calculation flow you found]
 </answer>
 
 <next_steps>
@@ -115,6 +115,7 @@ Use the right tool for the job:
 - **Text patterns** (strings, comments, logs): grep
 - **File patterns** (find by name/extension): glob
 - **History/evolution** (when added, who changed): git commands
+- **Data analysis** (factor calculations, signal generation): grep, ast_grep_search
 
 Flood with parallel calls. Cross-validate findings across multiple tools.`,
   }
