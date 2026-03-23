@@ -1,7 +1,7 @@
 {
   "name": "oh-my-opencode",
   "version": "3.11.0",
-  "description": "The Best AI Agent Harness - Batteries-Included OpenCode Plugin with Multi-Model Orchestration, Parallel Background Agents, and Crafted LSP/AST Tools",
+  "description": "Quantitative Research AI Agent Harness - Multi-Agent Orchestration for Factor Mining, CTA Trading Systems, and Alpha Research with Occam's Razor Principles",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "type": "module",
@@ -35,8 +35,13 @@
   "keywords": [
     "opencode",
     "plugin",
-    "oracle",
-    "librarian",
+    "quant",
+    "quantitative-research",
+    "factor-mining",
+    "alpha",
+    "cta",
+    "trading-system",
+    "backtesting",
     "agents",
     "ai",
     "llm"
