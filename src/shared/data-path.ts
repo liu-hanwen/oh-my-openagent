@@ -31,11 +31,11 @@ export function getCacheDir(): string {
 }
 
 /**
- * Returns the oh-my-opencode cache directory.
- * All platforms: ~/.cache/oh-my-opencode
+ * Returns the oh-my-openquant cache directory.
+ * All platforms: ~/.cache/oh-my-openquant
  */
 export function getOmoOpenCodeCacheDir(): string {
-  return path.join(getCacheDir(), "oh-my-opencode")
+  return path.join(getCacheDir(), "oh-my-openquant")
 }
 
 /**

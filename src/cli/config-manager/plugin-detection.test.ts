@@ -15,7 +15,7 @@ describe("detectCurrentConfig - single package detection", () => {
   beforeEach(() => {
     testConfigDir = join(tmpdir(), `omo-detect-config-${Date.now()}-${Math.random().toString(36).slice(2)}`)
     testConfigPath = join(testConfigDir, "opencode.json")
-    testOmoConfigPath = join(testConfigDir, "oh-my-opencode.json")
+    testOmoConfigPath = join(testConfigDir, "oh-my-openquant.json")
 
     mkdirSync(testConfigDir, { recursive: true })
     process.env.OPENCODE_CONFIG_DIR = testConfigDir
@@ -28,9 +28,9 @@ describe("detectCurrentConfig - single package detection", () => {
     delete process.env.OPENCODE_CONFIG_DIR
   })
 
-  it("detects oh-my-opencode in plugin array", () => {
+  it("detects oh-my-openquant in plugin array", () => {
     // given
-    const config = { plugin: ["oh-my-opencode"] }
+    const config = { plugin: ["oh-my-openquant"] }
     writeFileSync(testConfigPath, JSON.stringify(config, null, 2) + "\n", "utf-8")
 
     // when
@@ -40,9 +40,9 @@ describe("detectCurrentConfig - single package detection", () => {
     expect(result.isInstalled).toBe(true)
   })
 
-  it("detects oh-my-opencode with version pin", () => {
+  it("detects oh-my-openquant with version pin", () => {
     // given
-    const config = { plugin: ["oh-my-opencode@3.11.0"] }
+    const config = { plugin: ["oh-my-openquant@3.11.0"] }
     writeFileSync(testConfigPath, JSON.stringify(config, null, 2) + "\n", "utf-8")
 
     // when
@@ -102,7 +102,7 @@ describe("detectCurrentConfig - single package detection", () => {
 
   it("detects OpenCode Go from the existing omo config", () => {
     // given
-    writeFileSync(testConfigPath, JSON.stringify({ plugin: ["oh-my-opencode"] }, null, 2) + "\n", "utf-8")
+    writeFileSync(testConfigPath, JSON.stringify({ plugin: ["oh-my-openquant"] }, null, 2) + "\n", "utf-8")
     writeFileSync(
       testOmoConfigPath,
       JSON.stringify({ agents: { atlas: { model: "opencode-go/kimi-k2.5" } } }, null, 2) + "\n",
@@ -137,9 +137,9 @@ describe("addPluginToOpenCodeConfig - single package writes", () => {
     delete process.env.OPENCODE_CONFIG_DIR
   })
 
-  it("keeps oh-my-opencode when it already exists", async () => {
+  it("keeps oh-my-openquant when it already exists", async () => {
     // given
-    const config = { plugin: ["oh-my-opencode"] }
+    const config = { plugin: ["oh-my-openquant"] }
     writeFileSync(testConfigPath, JSON.stringify(config, null, 2) + "\n", "utf-8")
 
     // when
@@ -148,12 +148,12 @@ describe("addPluginToOpenCodeConfig - single package writes", () => {
     // then
     expect(result.success).toBe(true)
     const savedConfig = JSON.parse(readFileSync(testConfigPath, "utf-8"))
-    expect(savedConfig.plugin).toContain("oh-my-opencode")
+    expect(savedConfig.plugin).toContain("oh-my-openquant")
   })
 
-  it("replaces version-pinned oh-my-opencode@X.Y.Z", async () => {
+  it("replaces version-pinned oh-my-openquant@X.Y.Z", async () => {
     // given
-    const config = { plugin: ["oh-my-opencode@3.10.0"] }
+    const config = { plugin: ["oh-my-openquant@3.10.0"] }
     writeFileSync(testConfigPath, JSON.stringify(config, null, 2) + "\n", "utf-8")
 
     // when
@@ -162,8 +162,8 @@ describe("addPluginToOpenCodeConfig - single package writes", () => {
     // then
     expect(result.success).toBe(true)
     const savedConfig = JSON.parse(readFileSync(testConfigPath, "utf-8"))
-    expect(savedConfig.plugin).toContain("oh-my-opencode")
-    expect(savedConfig.plugin).not.toContain("oh-my-opencode@3.10.0")
+    expect(savedConfig.plugin).toContain("oh-my-openquant")
+    expect(savedConfig.plugin).not.toContain("oh-my-openquant@3.10.0")
   })
 
   it("recognizes oh-my-openagent as already installed (legacy name)", async () => {
@@ -178,7 +178,7 @@ describe("addPluginToOpenCodeConfig - single package writes", () => {
     expect(result.success).toBe(true)
     const savedConfig = JSON.parse(readFileSync(testConfigPath, "utf-8"))
     // Should upgrade to new name
-    expect(savedConfig.plugin).toContain("oh-my-opencode")
+    expect(savedConfig.plugin).toContain("oh-my-openquant")
     expect(savedConfig.plugin).not.toContain("oh-my-openagent")
   })
 
@@ -194,7 +194,7 @@ describe("addPluginToOpenCodeConfig - single package writes", () => {
     expect(result.success).toBe(true)
     const savedConfig = JSON.parse(readFileSync(testConfigPath, "utf-8"))
     // Legacy should be replaced with new name
-    expect(savedConfig.plugin).toContain("oh-my-opencode")
+    expect(savedConfig.plugin).toContain("oh-my-openquant")
     expect(savedConfig.plugin).not.toContain("oh-my-openagent")
   })
 
@@ -209,7 +209,7 @@ describe("addPluginToOpenCodeConfig - single package writes", () => {
     // then
     expect(result.success).toBe(true)
     const savedConfig = JSON.parse(readFileSync(testConfigPath, "utf-8"))
-    expect(savedConfig.plugin).toContain("oh-my-opencode")
+    expect(savedConfig.plugin).toContain("oh-my-openquant")
   })
 
   it("adds plugin when plugin array is empty", async () => {
@@ -223,6 +223,6 @@ describe("addPluginToOpenCodeConfig - single package writes", () => {
     // then
     expect(result.success).toBe(true)
     const savedConfig = JSON.parse(readFileSync(testConfigPath, "utf-8"))
-    expect(savedConfig.plugin).toContain("oh-my-opencode")
+    expect(savedConfig.plugin).toContain("oh-my-openquant")
   })
 })

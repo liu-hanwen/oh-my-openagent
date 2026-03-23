@@ -255,7 +255,7 @@ export function createOracleAgent(model: string): AgentConfig {
 
   const base = {
     description:
-      "Read-only consultation agent. High-IQ reasoning specialist for complex strategy architecture, factor validation methodology, and risk management design. Follows Occam's Razor. (Oracle - OhMyOpenCode)",
+      "Read-only consultation agent. High-IQ reasoning specialist for complex strategy architecture, factor validation methodology, and risk management design. Follows Occam's Razor. (Oracle - OhMyOpenQuant)",
     mode: MODE,
     model,
     temperature: 0.1,

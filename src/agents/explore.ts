@@ -35,7 +35,7 @@ export function createExploreAgent(model: string): AgentConfig {
 
   return {
     description:
-      'Contextual search for quant research codebases. Answers "Where is the momentum factor?", "Which file has the backtest engine?", "Find the risk model implementation". Fire multiple in parallel for broad searches. Specify thoroughness: "quick" for basic, "medium" for moderate, "very thorough" for comprehensive analysis. (Explore - OhMyOpenCode)',
+      'Contextual search for quant research codebases. Answers "Where is the momentum factor?", "Which file has the backtest engine?", "Find the risk model implementation". Fire multiple in parallel for broad searches. Specify thoroughness: "quick" for basic, "medium" for moderate, "very thorough" for comprehensive analysis. (Explore - OhMyOpenQuant)',
     mode: MODE,
     model,
     temperature: 0.1,

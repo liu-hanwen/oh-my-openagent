@@ -1,6 +1,6 @@
 import { describe, expect, it } from "bun:test";
 import { mergeConfigs, parseConfigPartially } from "./plugin-config";
-import { OhMyOpenCodeConfigSchema, type OhMyOpenCodeConfig } from "./config";
+import { OhMyOpenQuantConfigSchema, type OhMyOpenQuantConfig } from "./config";
 
 describe("mergeConfigs", () => {
   describe("categories merging", () => {
@@ -19,7 +19,7 @@ describe("mergeConfigs", () => {
             model: "anthropic/claude-haiku-4-5",
           },
         },
-      } as OhMyOpenCodeConfig;
+      } as OhMyOpenQuantConfig;
 
       const override = {
         categories: {
@@ -30,7 +30,7 @@ describe("mergeConfigs", () => {
             model: "google/gemini-3.1-pro",
           },
         },
-      } as unknown as OhMyOpenCodeConfig;
+      } as unknown as OhMyOpenQuantConfig;
 
       const result = mergeConfigs(base, override);
 
@@ -45,7 +45,7 @@ describe("mergeConfigs", () => {
     });
 
     it("should preserve base categories when override has no categories", () => {
-      const base: OhMyOpenCodeConfig = {
+      const base: OhMyOpenQuantConfig = {
         categories: {
           general: {
             model: "openai/gpt-5.4",
@@ -53,7 +53,7 @@ describe("mergeConfigs", () => {
         },
       };
 
-      const override: OhMyOpenCodeConfig = {};
+      const override: OhMyOpenQuantConfig = {};
 
       const result = mergeConfigs(base, override);
 
@@ -61,9 +61,9 @@ describe("mergeConfigs", () => {
     });
 
     it("should use override categories when base has no categories", () => {
-      const base: OhMyOpenCodeConfig = {};
+      const base: OhMyOpenQuantConfig = {};
 
-      const override: OhMyOpenCodeConfig = {
+      const override: OhMyOpenQuantConfig = {
         categories: {
           general: {
             model: "openai/gpt-5.4",
@@ -79,13 +79,13 @@ describe("mergeConfigs", () => {
 
   describe("existing behavior preservation", () => {
     it("should deep merge agents", () => {
-      const base: OhMyOpenCodeConfig = {
+      const base: OhMyOpenQuantConfig = {
         agents: {
           oracle: { model: "openai/gpt-5.4" },
         },
       };
 
-      const override: OhMyOpenCodeConfig = {
+      const override: OhMyOpenQuantConfig = {
         agents: {
           oracle: { temperature: 0.5 },
           explore: { model: "anthropic/claude-haiku-4-5" },
@@ -100,11 +100,11 @@ describe("mergeConfigs", () => {
     });
 
     it("should merge disabled arrays without duplicates", () => {
-      const base: OhMyOpenCodeConfig = {
+      const base: OhMyOpenQuantConfig = {
         disabled_hooks: ["comment-checker", "think-mode"],
       };
 
-      const override: OhMyOpenCodeConfig = {
+      const override: OhMyOpenQuantConfig = {
         disabled_hooks: ["think-mode", "session-recovery"],
       };
 
@@ -117,11 +117,11 @@ describe("mergeConfigs", () => {
     });
 
     it("should union disabled_tools from base and override without duplicates", () => {
-      const base: OhMyOpenCodeConfig = {
+      const base: OhMyOpenQuantConfig = {
         disabled_tools: ["todowrite", "interactive_bash"],
       };
 
-      const override: OhMyOpenCodeConfig = {
+      const override: OhMyOpenQuantConfig = {
         disabled_tools: ["interactive_bash", "look_at"],
       };
 
@@ -142,7 +142,7 @@ describe("parseConfigPartially", () => {
     //#then should accept the hook name so runtime and schema stay aligned
 
     it("should accept unknown disabled_hooks values for forward compatibility", () => {
-      const result = OhMyOpenCodeConfigSchema.safeParse({
+      const result = OhMyOpenQuantConfigSchema.safeParse({
         disabled_hooks: ["future-hook-name"],
       });
 
