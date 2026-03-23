@@ -16,7 +16,7 @@ let testCacheStore: ReturnType<typeof createConnectedProvidersCacheStore>
 describe("updateConnectedProvidersCache", () => {
 	beforeEach(() => {
 		fakeUserCacheRoot = mkdtempSync(join(tmpdir(), "connected-providers-user-cache-"))
-		testCacheDir = join(fakeUserCacheRoot, "oh-my-opencode")
+		testCacheDir = join(fakeUserCacheRoot, "oh-my-openquant")
 		testCacheStore = createConnectedProvidersCacheStore(() => testCacheDir)
 	})
 
@@ -137,7 +137,7 @@ describe("updateConnectedProvidersCache", () => {
 
 	test("does not remove unrelated files in the cache directory", async () => {
 		//#given
-		const realCacheDir = join(fakeUserCacheRoot, "oh-my-opencode")
+		const realCacheDir = join(fakeUserCacheRoot, "oh-my-openquant")
 		const sentinelPath = join(realCacheDir, "connected-providers-cache.test-sentinel.json")
 		mkdirSync(realCacheDir, { recursive: true })
 		writeFileSync(sentinelPath, JSON.stringify({ keep: true }))

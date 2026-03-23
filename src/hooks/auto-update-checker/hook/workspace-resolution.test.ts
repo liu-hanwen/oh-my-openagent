@@ -14,7 +14,7 @@ type ToastMessageGetter = (isUpdate: boolean, version?: string) => string
 
 function createPluginEntry(overrides?: Partial<PluginEntry>): PluginEntry {
   return {
-    entry: "oh-my-opencode@3.4.0",
+    entry: "oh-my-openquant@3.4.0",
     isPinned: false,
     pinnedVersion: null,
     configPath: "/test/opencode.json",
@@ -69,13 +69,13 @@ mock.module("../../../shared", () => ({
     configJson: join(TEST_CONFIG_DIR, "opencode.json"),
     configJsonc: join(TEST_CONFIG_DIR, "opencode.jsonc"),
     packageJson: join(TEST_CONFIG_DIR, "package.json"),
-    omoConfig: join(TEST_CONFIG_DIR, "oh-my-opencode.json"),
+    omoConfig: join(TEST_CONFIG_DIR, "oh-my-openquant.json"),
   }),
   getOpenCodeConfigDir: () => TEST_CONFIG_DIR,
 }))
 
 // Mock constants BEFORE importing the module
-const ORIGINAL_PACKAGE_NAME = "oh-my-opencode"
+const ORIGINAL_PACKAGE_NAME = "oh-my-openquant"
 mock.module("../constants", () => ({
   PACKAGE_NAME: ORIGINAL_PACKAGE_NAME,
   CACHE_DIR: TEST_CACHE_DIR,
@@ -87,7 +87,7 @@ mock.module("../../../shared/data-path", () => ({
   getDataDir: () => join(TEST_DIR, "data"),
   getOpenCodeStorageDir: () => join(TEST_DIR, "data", "opencode", "storage"),
   getCacheDir: () => TEST_DIR,
-  getOmoOpenCodeCacheDir: () => join(TEST_DIR, "oh-my-opencode"),
+  getOmoOpenCodeCacheDir: () => join(TEST_DIR, "oh-my-openquant"),
   getOpenCodeCacheDir: () => TEST_CACHE_DIR,
 }))
 mock.module("../../../shared/opencode-config-dir", () => ({
@@ -97,7 +97,7 @@ mock.module("../../../shared/opencode-config-dir", () => ({
     configJson: join(TEST_CONFIG_DIR, "opencode.json"),
     configJsonc: join(TEST_CONFIG_DIR, "opencode.jsonc"),
     packageJson: join(TEST_CONFIG_DIR, "package.json"),
-    omoConfig: join(TEST_CONFIG_DIR, "oh-my-opencode.json"),
+    omoConfig: join(TEST_CONFIG_DIR, "oh-my-openquant.json"),
   }),
 }))
 
@@ -142,14 +142,14 @@ describe("workspace resolution", () => {
   describe("#given config-dir install exists but cache-dir does not", () => {
     it("installs to config-dir, not cache-dir", async () => {
       //#given - config-dir has installation, cache-dir does not
-      mkdirSync(join(TEST_CONFIG_DIR, "node_modules", "oh-my-opencode"), { recursive: true })
+      mkdirSync(join(TEST_CONFIG_DIR, "node_modules", "oh-my-openquant"), { recursive: true })
       writeFileSync(
         join(TEST_CONFIG_DIR, "package.json"),
-        JSON.stringify({ dependencies: { "oh-my-opencode": "3.4.0" } }, null, 2)
+        JSON.stringify({ dependencies: { "oh-my-openquant": "3.4.0" } }, null, 2)
       )
       writeFileSync(
-        join(TEST_CONFIG_DIR, "node_modules", "oh-my-opencode", "package.json"),
-        JSON.stringify({ name: "oh-my-opencode", version: "3.4.0" }, null, 2)
+        join(TEST_CONFIG_DIR, "node_modules", "oh-my-openquant", "package.json"),
+        JSON.stringify({ name: "oh-my-openquant", version: "3.4.0" }, null, 2)
       )
 
       // cache-dir should NOT exist
@@ -167,24 +167,24 @@ describe("workspace resolution", () => {
   describe("#given both config-dir and cache-dir exist", () => {
     it("prefers config-dir over cache-dir", async () => {
       //#given - both directories have installations
-      mkdirSync(join(TEST_CONFIG_DIR, "node_modules", "oh-my-opencode"), { recursive: true })
+      mkdirSync(join(TEST_CONFIG_DIR, "node_modules", "oh-my-openquant"), { recursive: true })
       writeFileSync(
         join(TEST_CONFIG_DIR, "package.json"),
-        JSON.stringify({ dependencies: { "oh-my-opencode": "3.4.0" } }, null, 2)
+        JSON.stringify({ dependencies: { "oh-my-openquant": "3.4.0" } }, null, 2)
       )
       writeFileSync(
-        join(TEST_CONFIG_DIR, "node_modules", "oh-my-opencode", "package.json"),
-        JSON.stringify({ name: "oh-my-opencode", version: "3.4.0" }, null, 2)
+        join(TEST_CONFIG_DIR, "node_modules", "oh-my-openquant", "package.json"),
+        JSON.stringify({ name: "oh-my-openquant", version: "3.4.0" }, null, 2)
       )
 
-      mkdirSync(join(TEST_CACHE_DIR, "node_modules", "oh-my-opencode"), { recursive: true })
+      mkdirSync(join(TEST_CACHE_DIR, "node_modules", "oh-my-openquant"), { recursive: true })
       writeFileSync(
         join(TEST_CACHE_DIR, "package.json"),
-        JSON.stringify({ dependencies: { "oh-my-opencode": "3.4.0" } }, null, 2)
+        JSON.stringify({ dependencies: { "oh-my-openquant": "3.4.0" } }, null, 2)
       )
       writeFileSync(
-        join(TEST_CACHE_DIR, "node_modules", "oh-my-opencode", "package.json"),
-        JSON.stringify({ name: "oh-my-opencode", version: "3.4.0" }, null, 2)
+        join(TEST_CACHE_DIR, "node_modules", "oh-my-openquant", "package.json"),
+        JSON.stringify({ name: "oh-my-openquant", version: "3.4.0" }, null, 2)
       )
 
       //#when
@@ -199,14 +199,14 @@ describe("workspace resolution", () => {
   describe("#given only cache-dir install exists", () => {
     it("falls back to cache-dir", async () => {
       //#given - only cache-dir has installation
-      mkdirSync(join(TEST_CACHE_DIR, "node_modules", "oh-my-opencode"), { recursive: true })
+      mkdirSync(join(TEST_CACHE_DIR, "node_modules", "oh-my-openquant"), { recursive: true })
       writeFileSync(
         join(TEST_CACHE_DIR, "package.json"),
-        JSON.stringify({ dependencies: { "oh-my-opencode": "3.4.0" } }, null, 2)
+        JSON.stringify({ dependencies: { "oh-my-openquant": "3.4.0" } }, null, 2)
       )
       writeFileSync(
-        join(TEST_CACHE_DIR, "node_modules", "oh-my-opencode", "package.json"),
-        JSON.stringify({ name: "oh-my-opencode", version: "3.4.0" }, null, 2)
+        join(TEST_CACHE_DIR, "node_modules", "oh-my-openquant", "package.json"),
+        JSON.stringify({ name: "oh-my-openquant", version: "3.4.0" }, null, 2)
       )
 
       // config-dir should NOT exist

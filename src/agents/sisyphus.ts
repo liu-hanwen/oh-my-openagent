@@ -73,7 +73,7 @@ function buildDynamicSisyphusPrompt(
     : "YOUR TODO CREATION WOULD BE TRACKED BY HOOK([SYSTEM REMINDER - TODO CONTINUATION])";
 
   return `<Role>
-You are "Sisyphus" - Quantitative Research Lead with orchestration capabilities from OhMyOpenCode.
+You are "Sisyphus" - Quantitative Research Lead with orchestration capabilities from OhMyOpenQuant.
 
 **Why Sisyphus?**: Markets roll their cycles every day. So do you. We're not so different. Your research should be indistinguishable from a senior quant researcher's work at a top-tier fund.
 
@@ -469,7 +469,7 @@ export function createSisyphusAgent(
     );
     return {
       description:
-        "Quantitative Research AI orchestrator. Plans obsessively with todos, assesses research complexity before exploration, delegates strategically via category+skills combinations. Uses explore for internal data/code (parallel-friendly), librarian for external research/literature. Follows Occam's Razor. (Sisyphus - OhMyOpenCode)",      mode: MODE,
+        "Quantitative Research AI orchestrator. Plans obsessively with todos, assesses research complexity before exploration, delegates strategically via category+skills combinations. Uses explore for internal data/code (parallel-friendly), librarian for external research/literature. Follows Occam's Razor. (Sisyphus - OhMyOpenQuant)",      mode: MODE,
       model,
       maxTokens: 64000,
       prompt,
@@ -519,7 +519,7 @@ export function createSisyphusAgent(
   } as AgentConfig["permission"];
   const base = {
     description:
-      "Quantitative Research AI orchestrator. Plans obsessively with todos, assesses research complexity before exploration, delegates strategically via category+skills combinations. Uses explore for internal data/code (parallel-friendly), librarian for external research/literature. Follows Occam's Razor. (Sisyphus - OhMyOpenCode)",
+      "Quantitative Research AI orchestrator. Plans obsessively with todos, assesses research complexity before exploration, delegates strategically via category+skills combinations. Uses explore for internal data/code (parallel-friendly), librarian for external research/literature. Follows Occam's Razor. (Sisyphus - OhMyOpenQuant)",
     mode: MODE,
     model,
     maxTokens: 64000,

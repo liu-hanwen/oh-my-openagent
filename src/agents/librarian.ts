@@ -32,7 +32,7 @@ export function createLibrarianAgent(model: string): AgentConfig {
 
   return {
     description:
-      "Specialized research agent for academic finance literature, quantitative methodology references, and financial data source discovery. MUST BE USED when users need academic papers on factor models, trading strategy references, or industry benchmark data. Uses GitHub, Context7, and Web Search for financial research. (Librarian - OhMyOpenCode)",
+      "Specialized research agent for academic finance literature, quantitative methodology references, and financial data source discovery. MUST BE USED when users need academic papers on factor models, trading strategy references, or industry benchmark data. Uses GitHub, Context7, and Web Search for financial research. (Librarian - OhMyOpenQuant)",
     mode: MODE,
     model,
     temperature: 0.1,

@@ -292,7 +292,7 @@ export function createMomusAgent(model: string): AgentConfig {
 
   const base = {
     description:
-      "Practical quantitative research plan reviewer. Validates research methodology, data assumptions, and statistical rigor. Catches blocking issues like look-ahead bias, survivorship bias, and overfitting risk. (Momus - OhMyOpenCode)",
+      "Practical quantitative research plan reviewer. Validates research methodology, data assumptions, and statistical rigor. Catches blocking issues like look-ahead bias, survivorship bias, and overfitting risk. (Momus - OhMyOpenQuant)",
     mode: MODE,
     model,
     temperature: 0.1,

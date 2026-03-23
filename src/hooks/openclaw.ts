@@ -1,11 +1,11 @@
 import type { PluginContext } from "../plugin/types"
-import type { OhMyOpenCodeConfig } from "../config"
+import type { OhMyOpenQuantConfig } from "../config"
 import { wakeOpenClaw } from "../openclaw"
 import type { OpenClawContext } from "../openclaw/types"
 
 export function createOpenClawHook(
   ctx: PluginContext,
-  pluginConfig: OhMyOpenCodeConfig,
+  pluginConfig: OhMyOpenQuantConfig,
 ) {
   const config = pluginConfig.openclaw
   if (!config?.enabled) return null
