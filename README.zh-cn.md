@@ -21,7 +21,7 @@
 
 </div>
 
-> 量化研究的 AI 工兵团。不是一个模型——是整个作战体系。
+> 量化研究的 AI 协作团队。不是一个模型——是完整的研究体系。
 >
 > 用 Claude 做策略编排，用 GPT 做深度推理，用 Kimi 跑因子构建，用 Gemini 处理另类数据。模型越来越便宜，越来越聪明。没有一个提供商能够垄断。我们在为那个开放的市场而构建。
 
@@ -58,9 +58,9 @@
 
 # Oh My OpenCode（量化研究版）
 
-量化研究的 AI 工兵团 (Quantitative Research AI Agent Harness)。
+量化研究的 AI 协作团队 (Quantitative Research AI Agent Harness)。
 
-不是一个助手——是整套作战体系。因子挖掘 (Factor Mining)、CTA 策略开发、Alpha 研究、回测验证——各司其职，并行运转，永不停歇。Claude 做策略编排，GPT 做深度推理，Kimi 跑系统化研究，Gemini 分析另类数据。
+不是一个助手——是完整的研究体系。因子挖掘 (Factor Mining)、CTA 策略开发、Alpha 研究、回测验证——各司其职，并行运转，永不停歇。Claude 做策略编排，GPT 做深度推理，Kimi 跑系统化研究，Gemini 分析另类数据。
 
 **奥卡姆剃刀 (Occam's Razor) 是我们的核心原则**：从最简单的因子开始，用证据驱动复杂度，而不是用参数数量堆出过拟合。
 
@@ -176,7 +176,7 @@ Read this and tell me why it's not just another boilerplate: https://raw.githubu
 | `unspecified-high`   | 全面回测、前向优化、多资产验证             | `claude-opus-4-6` (max)   |
 | `writing`            | 研究报告、策略备忘录、因子文档             | `kimi-for-coding/k2p5`    |
 
-智能体只需要说明要做什么类型的研究，框架就会挑选出最合适的模型去干。你完全不需要操心。
+智能体只需要说明要做什么类型的研究，框架会自动选择最合适的模型来执行。你完全不需要操心。
 
 > **关于 `deep` 和 `artistry` 类别**：这两个类别有 `requiresModel` 限制——`deep` 需要 `gpt-5.3-codex` 可用，`artistry` 需要 `gemini-3.1-pro` 可用。如果相应的 provider 未连接，这些类别的子任务不会被调度。
 
